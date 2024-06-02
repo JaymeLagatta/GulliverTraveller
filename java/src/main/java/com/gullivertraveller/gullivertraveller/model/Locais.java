@@ -3,9 +3,9 @@ package com.gullivertraveller.gullivertraveller.model;
 import java.time.LocalDate;
 
 public class Locais {
-    private int id_local;
-    private TipoLocal id_tipo_local;
-    private TipoLocal id_subtipo_local;
+    private int cod_local;
+    private int tipo_local;
+    private String subtipo_local;
     private Cidade cidade;
     private String nome_local;
     private String email_local;
@@ -14,24 +14,24 @@ public class Locais {
     private String endereco_local;
     private String site_local;
     private LocalDate data_cadastro_local;
-    public int getId_local() {
-        return id_local;
+
+    public int getCod_local() {
+        return cod_local;
     }
-    public void setId_local(int id_local) {
-        this.id_local = id_local;
+    public void setCod_local(int cod_local) {
+        this.cod_local = cod_local;
     }
-    public TipoLocal getId_tipo_local() {
-        return id_tipo_local;
+
+    public int getTipo_local() {
+        return tipo_local;
     }
-    public void setId_tipo_local(TipoLocal id_tipo_local) {
-        this.id_tipo_local = id_tipo_local;
+    public void setTipo_local(int tipo_local) {this.tipo_local = tipo_local; }
+
+    public String getSubtipo_local() {return subtipo_local; }
+    public void setSubtipo_local(String subtipo_local) {
+        this.subtipo_local = subtipo_local;
     }
-    public TipoLocal getId_subtipo_local() {
-        return id_subtipo_local;
-    }
-    public void setId_subtipo_local(TipoLocal id_subtipo_local) {
-        this.id_subtipo_local = id_subtipo_local;
-    }
+
     public Cidade getCidade() {
         return cidade;
     }
@@ -80,13 +80,13 @@ public class Locais {
     public void setData_cadastro_local(LocalDate data_cadastro_local) {
         this.data_cadastro_local = data_cadastro_local;
     }
-    public Locais(int id_local, TipoLocal id_tipo_local, TipoLocal id_subtipo_local, Cidade cidade, String nome_local,
+    public Locais(int cod_local, int tipo_local, String subtipo_local, Cidade cidade, String nome_local,
                   String email_local, String instagram_local, String telefone_local, String endereco_local, String site_local,
                   LocalDate data_cadastro_local) {
         super();
-        this.id_local = id_local;
-        this.id_tipo_local = id_tipo_local;
-        this.id_subtipo_local = id_subtipo_local;
+        this.cod_local = cod_local;
+        this.tipo_local = tipo_local;
+        this.subtipo_local = subtipo_local;
         this.cidade = cidade;
         this.nome_local = nome_local;
         this.email_local = email_local;

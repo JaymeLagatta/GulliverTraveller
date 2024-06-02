@@ -19,7 +19,7 @@ public class EditUsersServlet extends HttpServlet {
             DataSource ds = new DataSource();
             UsuarioDAO usuarioDAO = new UsuarioDAO(ds);
 
-            String idUser = req.getParameter("id");
+            String idUser = req.getParameter("idUsuario");
             System.out.println(idUser);
 
             Usuario usuario = usuarioDAO.readOne(idUser);

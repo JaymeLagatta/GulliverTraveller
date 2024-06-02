@@ -8,12 +8,12 @@ public class DataSource {
 
 
     public DataSource() {
-        String serverName = "fiap-practice.database.windows.net";
-        String mydatabase = "gulliver";        
-        String port = "1433";
+        String serverName = "localhost";
+        String mydatabase = "gulliver";
+        String port = "3306";
         String url = "jdbc:mysql://" + serverName + ":" + port + "/" + mydatabase;
-        String username = "RM552883@fiap.com.br";
-        String password = "DtNasc#230680";
+        String username = "root";
+        String password = "";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");

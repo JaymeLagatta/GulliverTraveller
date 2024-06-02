@@ -42,6 +42,7 @@ public class AddUser extends HttpServlet {
             usuario.setSenha(senha);
             usuario.setInstagram_usuario(instagram);
 
+
             usuarioDAO.create(usuario);
 
             pagina = "/gulliverTraveller_war_exploded/readUsers";
