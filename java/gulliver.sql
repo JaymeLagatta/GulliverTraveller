@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/04/2024 às 01:41
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Tempo de geração: 04-Jun-2024 às 01:08
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `acessos`
+-- Estrutura da tabela `acessos`
 --
 
 CREATE TABLE `acessos` (
@@ -39,7 +39,7 @@ CREATE TABLE `acessos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cidades`
+-- Estrutura da tabela `cidades`
 --
 
 CREATE TABLE `cidades` (
@@ -50,7 +50,7 @@ CREATE TABLE `cidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `cidades`
+-- Extraindo dados da tabela `cidades`
 --
 
 INSERT INTO `cidades` (`id_cidade`, `nome_cidade`, `estado`, `país`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `cidades` (`id_cidade`, `nome_cidade`, `estado`, `país`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `comentarios`
+-- Estrutura da tabela `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -78,7 +78,7 @@ CREATE TABLE `comentarios` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `locais`
+-- Estrutura da tabela `locais`
 --
 
 CREATE TABLE `locais` (
@@ -91,13 +91,23 @@ CREATE TABLE `locais` (
   `instagram_local` varchar(45) DEFAULT NULL,
   `website` varchar(45) DEFAULT NULL,
   `cidades_id_cidade` int(11) NOT NULL,
-  `data_cadastro_local` date DEFAULT NULL
+  `data_cadastro_local` date DEFAULT NULL,
+  `url_imagem` varchar(199) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `locais`
+--
+
+INSERT INTO `locais` (`cod_local`, `tipo_local`, `nome_local`, `subtitpo_local`, `email_local`, `telefone_local`, `instagram_local`, `website`, `cidades_id_cidade`, `data_cadastro_local`, `url_imagem`) VALUES
+(1, 1, 'Hotel Salvador', '1', 'hotelsalvador@hotelsalvador.com.br', '71999999999', '@hotelsalvador', 'hotelsalvador@hotelsalvador.com.br', 5, '2024-06-01', 'images/hoteis/hotel-room.jpg'),
+(2, 1, 'Hotel São Paulo', '1', 'hotelsaopaulo@hotelsaopaulo.com.br', '11998888888', '@hotelsaopaulo', 'www.hotelsaopaulo.com.br', 1, '2024-06-01', 'images/hoteis/hotel-room.jpg'),
+(3, 1, 'Hotel Rio', '1', 'hotelrio@hotelrio.com', '21997777777', '@hotelrio', 'www.hotelrio.com.br', 2, '2024-06-01', 'images/hoteis/hotel-room.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipos_locais`
+-- Estrutura da tabela `tipos_locais`
 --
 
 CREATE TABLE `tipos_locais` (
@@ -106,22 +116,17 @@ CREATE TABLE `tipos_locais` (
   `nome_tipo_local` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Estrutura para tabela `tpos_locais`
+-- Extraindo dados da tabela `tipos_locais`
 --
 
-CREATE TABLE `tpos_locais` (
-  `idTipos_locais` int(11) NOT NULL,
-  `subtipo_local` varchar(45) DEFAULT NULL,
-  `nome_tipo_local` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `tipos_locais` (`idTipos_locais`, `subtipo_local`, `nome_tipo_local`) VALUES
+(1, '1', 'Hotel');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -135,20 +140,21 @@ CREATE TABLE `usuario` (
   `cidade` int(45) DEFAULT NULL,
   `telefone` varchar(45) DEFAULT NULL,
   `instagram_usuario` varchar(45) DEFAULT NULL,
-  `data_cadastro` date NOT NULL
+  `data_cadastro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `genero`, `tipo_usuario`, `email`, `senha`, `cpf`, `cidade`, `telefone`, `instagram_usuario`, `data_cadastro`) VALUES
-(1, 'David', NULL, 1, 'usuario@email.com', 'test', '15141234753', 9, '11 954225804', NULL, '2024-04-13');
+(1, 'David', NULL, 1, 'usuario@email.com', 'test', '15141234753', 9, '11 954225804', NULL, '2024-04-13'),
+(2, 'Jay', NULL, 1, 'jayme@teste.com', '123456', NULL, 2, NULL, NULL, '2024-06-01');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `viagens`
+-- Estrutura da tabela `viagens`
 --
 
 CREATE TABLE `viagens` (
@@ -171,27 +177,27 @@ CREATE TABLE `viagens` (
 --
 
 --
--- Índices de tabela `acessos`
+-- Índices para tabela `acessos`
 --
 ALTER TABLE `acessos`
   ADD PRIMARY KEY (`id_acessos`),
   ADD KEY `fk_acessos_USUARIO1_idx` (`USUARIO_id_usuario`);
 
 --
--- Índices de tabela `cidades`
+-- Índices para tabela `cidades`
 --
 ALTER TABLE `cidades`
   ADD PRIMARY KEY (`id_cidade`);
 
 --
--- Índices de tabela `comentarios`
+-- Índices para tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentarios`),
   ADD KEY `fk_comentarios_USUARIO1_idx` (`USUARIO_id_usuario`);
 
 --
--- Índices de tabela `locais`
+-- Índices para tabela `locais`
 --
 ALTER TABLE `locais`
   ADD PRIMARY KEY (`cod_local`),
@@ -199,26 +205,20 @@ ALTER TABLE `locais`
   ADD KEY `fk_locais_cidades1_idx` (`cidades_id_cidade`);
 
 --
--- Índices de tabela `tipos_locais`
+-- Índices para tabela `tipos_locais`
 --
 ALTER TABLE `tipos_locais`
   ADD PRIMARY KEY (`idTipos_locais`);
 
 --
--- Índices de tabela `tpos_locais`
---
-ALTER TABLE `tpos_locais`
-  ADD PRIMARY KEY (`idTipos_locais`);
-
---
--- Índices de tabela `usuario`
+-- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
   ADD KEY `fk_cidade_usuario` (`cidade`);
 
 --
--- Índices de tabela `viagens`
+-- Índices para tabela `viagens`
 --
 ALTER TABLE `viagens`
   ADD PRIMARY KEY (`id_viagem`),
@@ -226,7 +226,7 @@ ALTER TABLE `viagens`
   ADD KEY `fk_viagens_cidades1_idx` (`cidades_id_cidade`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -251,13 +251,13 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de tabela `locais`
 --
 ALTER TABLE `locais`
-  MODIFY `cod_local` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_local` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tipos_locais`
 --
 ALTER TABLE `tipos_locais`
-  MODIFY `idTipos_locais` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTipos_locais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -272,36 +272,36 @@ ALTER TABLE `viagens`
   MODIFY `id_viagem` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `acessos`
+-- Limitadores para a tabela `acessos`
 --
 ALTER TABLE `acessos`
   ADD CONSTRAINT `fk_acessos_USUARIO1` FOREIGN KEY (`USUARIO_id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `comentarios`
+-- Limitadores para a tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `fk_comentarios_USUARIO1` FOREIGN KEY (`USUARIO_id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `locais`
+-- Limitadores para a tabela `locais`
 --
 ALTER TABLE `locais`
   ADD CONSTRAINT `fk_locais_cidades1` FOREIGN KEY (`cidades_id_cidade`) REFERENCES `cidades` (`id_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_locais_tpos_locais1` FOREIGN KEY (`tipo_local`) REFERENCES `tipos_locais` (`idTipos_locais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `usuario`
+-- Limitadores para a tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_cidade_usuario` FOREIGN KEY (`cidade`) REFERENCES `cidades` (`id_cidade`);
 
 --
--- Restrições para tabelas `viagens`
+-- Limitadores para a tabela `viagens`
 --
 ALTER TABLE `viagens`
   ADD CONSTRAINT `fk_VIAGENS_USUARIO` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
